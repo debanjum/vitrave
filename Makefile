@@ -5,15 +5,15 @@ VERSION = 0.0.0
 DIST = Makefile ${PACKAGE}.c ${PACKAGE}.1 unused.h LICENSE
 
 PREFIX ?= /usr/local
-CC ?= gcc
+CC ?= g++
 
-CFLAGS += -Wall -Wextra -pedantic -std=c99
+CFLAGS += -Wall -Wextra -pedantic -std=c++11 -fpermissive
 CFLAGS += `pkg-config --cflags opencv`
 LDFLAGS += `pkg-config --libs opencv`
 
 all: ${PACKAGE}
 
-${PACKAGE}: ${PACKAGE}.c unused.h
+${PACKAGE}: ${PACKAGE}.cpp unused.h
 	${CC} ${CFLAGS} $< -o $@ ${LDFLAGS}
 
 install: ${PACKAGE} ${PACKAGE}.1
